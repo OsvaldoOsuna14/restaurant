@@ -24,82 +24,24 @@
         Explora nuestra variada selección de platos deliciosos y tradicionales.
       </p>
       <div class="menu-card">
-        <div class="menu-item">
-          <img src="enchiladas.jpg" alt="Plato 1" class="menu-image" />
-          <h3 class="menu-title">Enchiladas</h3>
-          <p class="menu-description">
-            Tortillas de maíz rellenas de pollo, bañadas en salsa roja o verde,
-            acompañadas de crema, queso y cebolla.
-          </p>
+        <div class="menu-item" *ngFor="let item of menuItems">
+          <img [src]="item.image" alt="{{ item.name }}" class="menu-image" />
+          <h3 class="menu-title">{{ item.name }}</h3>
+          <p class="menu-description">{{ item.description }}</p>
           <div class="menu-footer">
-            <span class="menu-price">95 pesos</span>
-            <button class="btn-menu">Ordenar</button>
-          </div>
-        </div>
-        <div class="menu-item">
-          <img src="gorditas.jpeg" alt="Plato 2" class="menu-image" />
-          <h3 class="menu-title">Gorditas</h3>
-          <p class="menu-description">
-            Masa de maíz rellena de frijoles, chicharrón, o carne, servida con
-            salsa y queso fresco.
-          </p>
-          <div class="menu-footer">
-            <span class="menu-price">50 pesos</span>
-            <button class="btn-menu">Ordenar</button>
-          </div>
-        </div>
-        <div class="menu-item">
-          <img src="pozole.jpeg" alt="Plato 3" class="menu-image" />
-          <h3 class="menu-title">Pozole</h3>
-          <p class="menu-description">
-            Sopa tradicional mexicana hecha con granos de maíz, carne de cerdo, y
-            condimentos, acompañada de lechuga, rábanos y limón.
-          </p>
-          <div class="menu-footer">
-            <span class="menu-price">120 pesos</span>
-            <button class="btn-menu">Ordenar</button>
-          </div>
-        </div>
-        <div class="menu-item">
-          <img src="flautas.jpeg" alt="Plato 4" class="menu-image" />
-          <h3 class="menu-title">Flautas</h3>
-          <p class="menu-description">
-            Tortillas de maíz enrolladas y fritas, rellenas de pollo o carne,
-            servidas con crema, queso y salsa.
-          </p>
-          <div class="menu-footer">
-            <span class="menu-price">70 pesos</span>
-            <button class="btn-menu">Ordenar</button>
-          </div>
-        </div>
-        <div class="menu-item">
-          <img src="menudo.jpeg" alt="Plato 5" class="menu-image" />
-          <h3 class="menu-title">Menudo</h3>
-          <p class="menu-description">
-            Sopa tradicional mexicana hecha a base de estómago de res, cocinado
-            con maíz y chiles, ideal para recuperarse después de una fiesta.
-          </p>
-          <div class="menu-footer">
-            <span class="menu-price">130 pesos</span>
-            <button class="btn-menu">Ordenar</button>
-          </div>
-        </div>
-        <div class="menu-item">
-          <img src="chilaquiles.jpeg" alt="Plato 6" class="menu-image" />
-          <h3 class="menu-title">Chilaquiles</h3>
-          <p class="menu-description">
-            Totopos de maíz bañados en salsa roja o verde, acompañados de pollo,
-            crema, queso y cebolla.
-          </p>
-          <div class="menu-footer">
-            <span class="menu-price">80 pesos</span>
-            <button class="btn-menu">Ordenar</button>
+            <span class="menu-price">{{ item.price }} pesos</span>
+            <span class="stock-status" [ngClass]="getStockStatus(item.stock)">
+              {{ getStockStatus(item.stock) | titlecase }}
+            </span>
+            <button class="btn-menu" [disabled]="item.stock === 0">Ordenar</button>
           </div>
         </div>
       </div>
     </div>
   </section>
-
+  
+  
+  
 
   <section id="sobre-nosotros" class="sobre-nosotros-section">
     <div class="sobre-nosotros-container">
